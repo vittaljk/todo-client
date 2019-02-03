@@ -1,5 +1,5 @@
 <mat-toolbar color="primary">Todo App</mat-toolbar>
-
+<mat-spinner *ngIf="showSpinner"></mat-spinner>
 <div class="container">
     <div class="event-table-container" *ngIf="event">
         <div class="day" *ngFor="let day of daysOfTheWeek; let j = index;" (click)="selectDay(day)" [class.selected]="day === selectedDay">

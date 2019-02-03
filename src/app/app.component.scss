@@ -68,7 +68,7 @@
 .action-icons {
     display: none;
     position: absolute;
-    right: 10px;
+    right: 5px;
 }
 
 .mat-icon {
@@ -93,4 +93,10 @@
 
 mat-form-field, .submit-btn {
     width: 100%;
+}
+
+.mat-progress-spinner {
+    position: fixed;
+    left: calc(50% - 50px);
+    top: calc(50% - 50px);
 }

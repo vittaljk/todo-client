@@ -25,6 +25,8 @@ export class AppComponent implements OnInit {
     action = 'ADD';
     // to capture selected event to perform update operation
     selectedEvent: string;
+    // to handle ui spinner
+    showSpinner = false;
 
     constructor(
         private eventService: EventService,
@@ -44,10 +46,15 @@ export class AppComponent implements OnInit {
      * loads events trough eventService
      */
     initializeEvents(): void {
+        this.showSpinner = true;
         this.eventService.getEvents()
-            .subscribe(event => {
-                this.event = event;
-            });
+            .subscribe(
+                event => {
+                    this.event = event;
+                    this.showSpinner = false;
+                },
+                () => this.showSpinner = false
+            );
     }
 
     /**
@@ -108,14 +115,19 @@ export class AppComponent implements OnInit {
                 name: this.eventForm.value.name.trim(),
                 day: this.selectedDay
             };
+            this.showSpinner = true;
             this.eventService.addEvent(event)
                 .subscribe(
                     res => {
                         this.showToast(res['message']);
                         this.initializeEvents();
                         this.eventForm.reset();
+                        this.showSpinner = false;
                     },
-                    () => this.showToast('Something went wrong')
+                    () => {
+                        this.showToast('Something went wrong');
+                        this.showSpinner = false;
+                    }
                 );
         } else {
             this.showToast('Event name is required to add');
@@ -127,20 +139,29 @@ export class AppComponent implements OnInit {
      * this methods calls updateEvent from event service
      */
     updateEvent(): void {
-        const event = {
-            name: this.eventForm.value.name,
-            day: this.selectDay,
-            id: this.selectedEvent
-        };
-        this.eventService.updateEvent(event)
-            .subscribe(
-                res => {
-                    this.showToast(res['message']);
-                    this.initializeEvents();
-                    this.eventForm.reset();
-                },
-                () => this.showToast('Something went wrong')
-            );
+        if (this.eventForm.valid) {
+            const event = {
+                name: this.eventForm.value.name,
+                day: this.selectDay,
+                id: this.selectedEvent
+            };
+            this.showSpinner = true;
+            this.eventService.updateEvent(event)
+                .subscribe(
+                    res => {
+                        this.showToast(res['message']);
+                        this.initializeEvents();
+                        this.eventForm.reset();
+                        this.showSpinner = false;
+                    },
+                    () => {
+                        this.showToast('Something went wrong');
+                        this.showSpinner = false;
+                    }
+                );
+        } else {
+            this.showToast('Event name is required to update');
+        }
     }
 
     /**
@@ -151,13 +172,18 @@ export class AppComponent implements OnInit {
      */
     deleteEvent(id: string, eventObj): void {
         eventObj.stopPropagation();
+        this.showSpinner = true;
         this.eventService.deleteEvent(id)
             .subscribe(
                 res => {
                     this.showToast(res['message']);
                     this.initializeEvents();
+                    this.showSpinner = false;
                 },
-                () => this.showToast('Something went wrong')
+                () => {
+                    this.showToast('Something went wrong');
+                    this.showSpinner = false;
+                }
             );
     }
 
