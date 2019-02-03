@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { EventData } from './model';
+import { EventService } from './event.service';
 
 @Component({
     selector: 'app-root',
@@ -7,7 +8,10 @@ import { EventData } from './model';
     styleUrls: ['./app.component.scss']
 })
 
-export class AppComponent {
+export class AppComponent implements OnInit {
+
+    constructor(private eventService: EventService) { }
+
     events: Array<EventData> = [
         {
             day: 'Monday',
@@ -38,4 +42,8 @@ export class AppComponent {
             events: ['Event 1']
         },
     ];
+
+    ngOnInit(): void {
+        this.eventService.getEvents();
+    }
 }
