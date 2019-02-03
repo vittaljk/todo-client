@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { EventService } from './event.service';
+import { DaysOfTheWeek } from './model';
 
 @Component({
     selector: 'app-root',
@@ -8,19 +9,17 @@ import { EventService } from './event.service';
 })
 
 export class AppComponent implements OnInit {
-    daysOfTheWeek = [
-        'Monday',
-        'Tuesday',
-        'Wednesday',
-        'Thursday',
-        'Friday',
-        'Saturday',
-        'Sunday'
-    ];
-
-    events: any;
+    daysOfTheWeek = DaysOfTheWeek;
+    events;
 
     constructor(private eventService: EventService) { }
+
+    ngOnInit(): void {
+        this.eventService.getEvents()
+            .subscribe(events => {
+                this.events = events;
+            });
+    }
 
     addEventToDay(day): void {
         const event = {
@@ -55,12 +54,5 @@ export class AppComponent implements OnInit {
                 res => console.log(res),
                 err => console.log(err)
             );
-    }
-
-    ngOnInit(): void {
-        this.eventService.getEvents()
-            .subscribe(events => {
-                this.events = events;
-            });
     }
 }
