@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { EventData } from './model';
 import { EventService } from './event.service';
 
 @Component({
@@ -9,41 +8,59 @@ import { EventService } from './event.service';
 })
 
 export class AppComponent implements OnInit {
+    daysOfTheWeek = [
+        'Monday',
+        'Tuesday',
+        'Wednesday',
+        'Thursday',
+        'Friday',
+        'Saturday',
+        'Sunday'
+    ];
+
+    events: any;
 
     constructor(private eventService: EventService) { }
 
-    events: Array<EventData> = [
-        {
-            day: 'Monday',
-            events: ['Event 1', 'Event 2', 'Event 3', 'Event 4']
-        },
-        {
-            day: 'Tuesday',
-            events: ['Event 1', 'Event 2', 'Event 3']
-        },
-        {
-            day: 'Wednesday',
-            events: ['Event 1', 'Event 2']
-        },
-        {
-            day: 'Thursday',
-            events: ['Event 1', 'Event 2', 'Event 3', 'Event 4', 'Event 5']
-        },
-        {
-            day: 'Friday',
-            events: ['Event 1', 'Event 2', 'Event 3']
-        },
-        {
-            day: 'Saturday',
-            events: ['Event 1']
-        },
-        {
-            day: 'Sunday',
-            events: ['Event 1']
-        },
-    ];
+    addEventToDay(day): void {
+        const event = {
+            name: 'event',
+            day
+        };
+        this.eventService.addEvent(event)
+            .subscribe(
+                res => console.log('data', res),
+                err => console.log('error', err)
+            );
+    }
+
+    updateEvent(id: string, day: string, eventObj): void {
+        eventObj.stopPropagation();
+        const event = {
+            name: 'updated event',
+            day,
+            id
+        };
+        this.eventService.updateEvent(event)
+            .subscribe(
+                res => console.log(res),
+                err => console.log(err)
+            );
+    }
+
+    deleteEvent(id: string, eventObj): void {
+        eventObj.stopPropagation();
+        this.eventService.deleteEvent(id)
+            .subscribe(
+                res => console.log(res),
+                err => console.log(err)
+            );
+    }
 
     ngOnInit(): void {
-        this.eventService.getEvents();
+        this.eventService.getEvents()
+            .subscribe(events => {
+                this.events = events;
+            });
     }
 }

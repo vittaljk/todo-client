@@ -5,10 +5,29 @@ import { HttpClient } from '@angular/common/http';
     providedIn: 'root'
 })
 export class EventService {
+    baseUrl = 'http://localhost:8080/api/events';
 
     constructor(private http: HttpClient) { }
 
     getEvents() {
-        this.http.get('http://localhost:8080/api/events').subscribe(x => console.log(x));
+        return this.http.get(this.baseUrl);
+    }
+
+    addEvent({ name, day }) {
+        return this.http.post(this.baseUrl, {
+            name,
+            day
+        }, {});
+    }
+
+    updateEvent({ name, day, id }) {
+        return this.http.put(
+            `${this.baseUrl}/${id}`,
+            { name, day }
+        );
+    }
+
+    deleteEvent(id) {
+        return this.http.delete(`${this.baseUrl}/${id}`);
     }
 }

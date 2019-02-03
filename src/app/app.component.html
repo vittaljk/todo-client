@@ -1,20 +1,20 @@
 <mat-toolbar color="primary">Todo App</mat-toolbar>
 
 <div class="container">
-    <div class="event-table-container">
-        <div class="event-wrapper" *ngFor="let event of events">
-            <div class="day">
-                <div>
-                    {{ event.day }}
-                </div>
-                <div *ngFor="let eventName of event.events">
-                    {{ eventName }}
+    <div class="event-table-container" *ngIf="events">
+        <div class="day" *ngFor="let day of daysOfTheWeek; let j = index;" (click)="addEventToDay(day)">
+            <div class="day-name">{{ day }}</div>
+            <div class="event-wrapper">
+                <div class="event" *ngFor="let event of events[day]; let j = index;">
+                    <div class="event-name">{{ event.name }}</div>
+                    <mat-icon (click)="deleteEvent(event._id, $event)">delete</mat-icon>
+                    <mat-icon (click)="updateEvent(event._id, day, $event)">edit</mat-icon>
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="add-edit-event-container">
+    <!-- <div class="add-edit-event-container">
         <div>Add/Edit Event for x-day</div>
         <mat-form-field>
             <input matInput placeholder="Enter an event">
@@ -22,5 +22,5 @@
         <div>
             <button mat-raised-button color="accent">Submit</button>
         </div>
-    </div>
+    </div> -->
 </div>
