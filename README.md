@@ -14,3 +14,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 - Install angular cli using, npm install -g @angular/cli
 - Start the server: `yarn start`
 - your application will be running in `http://localhost:4200/`
+
+## Application screens
+
+![alt text](https://ibb.co/HzfWwLK)
