@@ -1,0 +1,15 @@
+.container {
+    margin: 0 auto;
+    max-width: 1280px;
+    width: 100%;
+}
+
+.event-table-container {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    margin: 100px 10%;
+}
+
+.event-wrapper {
+    text-align: center;
+}
