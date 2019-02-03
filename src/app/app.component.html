@@ -1,26 +1,32 @@
 <mat-toolbar color="primary">Todo App</mat-toolbar>
 
 <div class="container">
-    <div class="event-table-container" *ngIf="events">
-        <div class="day" *ngFor="let day of daysOfTheWeek; let j = index;" (click)="addEventToDay(day)">
+    <div class="event-table-container" *ngIf="event">
+        <div class="day" *ngFor="let day of daysOfTheWeek; let j = index;" (click)="selectDay(day)" [class.selected]="day === selectedDay">
             <div class="day-name">{{ day }}</div>
             <div class="event-wrapper">
-                <div class="event" *ngFor="let event of events[day]; let j = index;">
+                <div class="event" *ngFor="let event of event[day]; let j = index;">
                     <div class="event-name">{{ event.name }}</div>
-                    <mat-icon (click)="deleteEvent(event._id, $event)">delete</mat-icon>
-                    <mat-icon (click)="updateEvent(event._id, day, $event)">edit</mat-icon>
+                    <div class="action-icons">
+                        <div>
+                            <mat-icon (click)="deleteEvent(event._id, $event)">delete</mat-icon>
+                        </div>
+                        <div>
+                            <mat-icon (click)="updateEventHandler(event._id, day, $event, event.name)">edit</mat-icon>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- <div class="add-edit-event-container">
-        <div>Add/Edit Event for x-day</div>
+    <div class="add-edit-event-container" [formGroup]="eventForm">
+        <div>Add/Edit Event for <span class="add-edit-event-title">{{ selectedDay }}</span></div>
         <mat-form-field>
-            <input matInput placeholder="Enter an event">
+            <input #eventInput matInput placeholder="Enter an event" formControlName="name">
         </mat-form-field>
-        <div>
-            <button mat-raised-button color="accent">Submit</button>
+        <div (click)="handleFormSubmit()">
+            <button class="submit-btn" mat-raised-button color="accent">Submit</button>
         </div>
-    </div> -->
+    </div>
 </div>
