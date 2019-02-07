@@ -17,4 +17,5 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ## Application screens
 
-<img width="1280" alt="screenshot 2019-02-04 at 12 58 34 am" src="https://user-images.githubusercontent.com/17174266/52181626-e010c680-2819-11e9-971a-ecb5c342a364.png">
+<img width="1280" alt="screenshot 2019-02-08 at 1 15 18 am" src="https://user-images.githubusercontent.com/17174266/52438385-24180a00-2b3f-11e9-8693-997e27ecc259.png">
+
