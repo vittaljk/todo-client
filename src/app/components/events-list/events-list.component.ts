@@ -23,6 +23,8 @@ export class EventsListComponent implements OnInit {
     eventForm: FormGroup;
     // reference to input element to set focus on update
     @ViewChild('eventInput') el: ElementRef;
+    // to handle ui spinner
+    showSpinner = false;
 
     constructor(private eventService: EventService) {
         this.eventForm = new FormGroup({
@@ -53,11 +55,14 @@ export class EventsListComponent implements OnInit {
      * loads events trough eventService
      */
     initializeEvents(): void {
+        this.showSpinner = true;
         this.eventService.getEvents()
             .subscribe(
                 event => {
                     this.event = event;
+                    this.showSpinner = false;
                 },
+                () => this.showSpinner = false
             );
     }
 
@@ -103,13 +108,15 @@ export class EventsListComponent implements OnInit {
                 name: this.eventForm.value.name.trim(),
                 day: this.selectedDay
             };
+            this.showSpinner = true;
             this.eventService.addEvent(event)
                 .subscribe(
                     res => {
                         this.initializeEvents();
                         this.eventForm.reset();
+                        this.showSpinner = false;
                     },
-                    () => { }
+                    () => {  this.showSpinner = false; }
                 );
         } else {
             console.log('Event name is required to add')
@@ -127,13 +134,16 @@ export class EventsListComponent implements OnInit {
                 day: this.selectedDay,
                 id: this.selectedEvent
             };
+            this.showSpinner = true;
             this.eventService.updateEvent(event)
                 .subscribe(
                     res => {
                         this.initializeEvents();
                         this.eventForm.reset();
+                        this.showSpinner = false;
                     },
                     () => {
+                        this.showSpinner = false;
                         console.log('Something went wrong');
                     }
                 );
@@ -148,12 +158,14 @@ export class EventsListComponent implements OnInit {
      * this methods calls deleteEvent calling event service deleteEvent method
      */
     deleteEventHandler(id: string): void {
+        this.showSpinner = true;
         this.eventService.deleteEvent(id)
             .subscribe(
                 res => {
                     this.initializeEvents();
+                    this.showSpinner = false;
                 },
-                () => { }
+                () => { this.showSpinner = false; }
             );
     }
 }

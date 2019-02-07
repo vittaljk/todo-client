@@ -16,11 +16,13 @@ export class EventComponent implements OnInit {
 
     ngOnInit() { }
 
-    deleteEventHandler(): void {
+    deleteEventHandler(event): void {
+        event.stopPropagation();
         this.deleteEventEmitter.emit(this.event._id);
     }
 
-    editEventHandler(): void {
+    editEventHandler(event): void {
+        event.stopPropagation();
         this.editEventEmitter.emit(this.event);
     }
 }

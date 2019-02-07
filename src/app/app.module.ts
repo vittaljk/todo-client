@@ -7,12 +7,14 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { EventsListComponent } from './components/events-list/events-list.component';
 import { EventComponent } from './components/event/event.component';
 import { AngularSvgIconModule } from 'angular-svg-icon';
+import { LoaderComponent } from './components/loader/loader.component';
 
 @NgModule({
     declarations: [
         AppComponent,
         EventsListComponent,
-        EventComponent
+        EventComponent,
+        LoaderComponent
     ],
     imports: [
         BrowserModule,

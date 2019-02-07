@@ -1,3 +1,4 @@
+<app-loader *ngIf="showSpinner"></app-loader>
 <div *ngIf="event">
     <div class="event-list-container">
         <div class="day" *ngFor="let day of daysOfTheWeek" (click)="selectDay(day)" [class.selected]="day === selectedDay">
@@ -17,7 +18,7 @@
         <div class="add-edit-element title">Add/Edit Event for<span class="add-edit-event-tag">{{ selectedDay }}</span></div>
         <input class="add-edit-element" #eventInput placeholder="Enter an event" formControlName="name">
         <div class="add-edit-element btn-container" (click)="handleFormSubmit()">
-            <button class="submit-btn">Submit</button>
+            <button [disabled]="eventForm.invalid" class="submit-btn">Submit</button>
         </div>
     </div>
 </div>
