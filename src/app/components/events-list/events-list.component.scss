@@ -13,3 +13,7 @@
 .day {
     text-align: center;
 }
+
+.day.selected {
+    background: rgba(74, 74, 95, 0.29);
+}

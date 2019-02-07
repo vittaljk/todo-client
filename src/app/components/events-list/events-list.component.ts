@@ -38,6 +38,17 @@ export class EventsListComponent implements OnInit {
     }
 
     /**
+     * selectDay
+     * @param day
+     * sets selected day and action
+     */
+    selectDay(day): void {
+        this.selectedDay = day;
+        this.action = 'ADD';
+        this.el.nativeElement.focus();
+    }
+
+    /**
      * initializeEvents
      * loads events trough eventService
      */
