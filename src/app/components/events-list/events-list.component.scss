@@ -2,18 +2,29 @@
     border: solid 1px #777777;
     border-radius: 3px;
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
     grid-gap: 10px;
     grid-auto-rows: minmax(90px, auto);
     grid-auto-flow: dense;
-    // padding: 10px;
-    margin: 0 20%;
+    margin: 0 10%;
+    background: #ffffff;
+
 }
 
 .day {
     text-align: center;
+    padding: 20px 10px;
+}
+
+.day-name {
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #e6fff5;
+    border-radius: 2px;
 }
 
 .day.selected {
-    background: rgba(74, 74, 95, 0.29);
+    background: rgba(240, 245, 245, 0.5);
 }

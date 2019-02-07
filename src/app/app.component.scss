@@ -2,6 +2,8 @@
     margin: 0 auto;
     max-width: 1280px;
     width: 100%;
+    background: #eaeaea;
+    min-height: 100vh;
 }
 
 .event-table-container {
@@ -89,14 +91,4 @@
 .add-edit-event-title {
     font-weight: bold;
     color: #3e4db8;
-}
-
-mat-form-field, .submit-btn {
-    width: 100%;
-}
-
-.mat-progress-spinner {
-    position: fixed;
-    left: calc(50% - 50px);
-    top: calc(50% - 50px);
 }
