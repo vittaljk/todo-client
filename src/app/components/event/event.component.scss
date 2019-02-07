@@ -1,9 +1,17 @@
 .event {
-    margin: 15px 0;
+    margin: 10px 0;
     background: #e6f9ff;
     border-radius: 5px;
     height: 30px;
     display: flex;
     align-items: center;
     justify-content: center;
+    font-family: Roboto;
+    font-size: 14px;
+}
+
+.event-name {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }

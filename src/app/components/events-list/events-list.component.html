@@ -14,10 +14,10 @@
     </div>
 
     <div class="add-edit-event-container" [formGroup]="eventForm">
-        <div>Add/Edit Event for <span class="add-edit-event-title">{{ selectedDay }}</span></div>
-        <input #eventInput placeholder="Enter an event" formControlName="name">
-        <div (click)="handleFormSubmit()">
-            <button class="submit-btn" mat-raised-button color="accent">Submit</button>
+        <div class="add-edit-element title">Add/Edit Event for<span class="add-edit-event-tag">{{ selectedDay }}</span></div>
+        <input class="add-edit-element" #eventInput placeholder="Enter an event" formControlName="name">
+        <div class="add-edit-element btn-container" (click)="handleFormSubmit()">
+            <button class="submit-btn">Submit</button>
         </div>
     </div>
 </div>

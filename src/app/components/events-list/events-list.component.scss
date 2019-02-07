@@ -1,19 +1,23 @@
 .event-list-container {
-    border: solid 1px #777777;
-    border-radius: 3px;
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
     grid-gap: 10px;
-    grid-auto-rows: minmax(90px, auto);
+    grid-auto-rows: minmax(130px, auto);
     grid-auto-flow: dense;
-    margin: 0 10%;
+    padding: 10px;
+    margin: 40px 10%;
     background: #ffffff;
-
+    cursor: pointer;
+    border-radius: 3px;
+    max-height: 300px;
+    overflow-y: auto;
 }
 
 .day {
     text-align: center;
-    padding: 20px 10px;
+    padding: 10px;
+    border: solid 1px #d2d6d6;
+    border-radius: 5px;
 }
 
 .day-name {
@@ -23,8 +27,76 @@
     justify-content: center;
     background: #e6fff5;
     border-radius: 2px;
+    font-family: Roboto-Condensed-Bold;
+    font-size: 16px;
 }
 
 .day.selected {
-    background: rgba(240, 245, 245, 0.5);
+    background: rgba(240, 245, 245, 0.8);
+}
+
+
+.add-edit-event-container {
+    width: 300px;
+    margin: auto auto 100px;
+    text-align: center;
+    background: #ffffff;
+    border-radius: 3px;
+    display: grid;
+    grid-template-rows: repeat(3, 40px);
+    align-items: center;
+    @media screen and (max-width: 500px) {
+        width: 80%;
+    }
+    .title {
+        background: #ff6463;
+        font-family: Roboto;
+        color: #ffffff;
+        font-size: 15px;
+        border-top-right-radius: 3px;
+        border-top-left-radius: 3px;
+        .add-edit-event-tag {
+            padding: 3px 10px;
+            background: #e5f9ff;
+            color: black;
+            font-size: 11px;
+            font-family: Roboto;
+            border-radius: 20px;
+            margin-left: 10px;
+            font-weight: bold;
+        }
+    }
+}
+
+.add-edit-element {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+input.add-edit-element {
+    border: none;
+    outline: none;
+    font-family: Roboto;
+    font-size: 14px;
+    padding: 0 15px;
+    outline: none;
+    border-bottom: solid 1px #cccccc;
+}
+
+.btn-container {
+    text-align: right;
+    margin-right: 10px;
+    justify-content: flex-end;
+}
+
+.submit-btn {
+    height: 25px;
+    border: none;
+    background: #4da6ff;
+    border-radius: 3px;
+    color: #ffffff;
+    font-family: Roboto;
+    font-size: 12px;
 }

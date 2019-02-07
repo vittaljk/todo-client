@@ -4,6 +4,22 @@
     width: 100%;
     background: #eaeaea;
     min-height: 100vh;
+    overflow: auto;
+}
+
+.header {
+    height: 50px;
+    display: flex;
+    align-items: center;
+    padding: 0 40px;
+    color: #ffffff;
+    background: #ff6666;
+}
+
+.title {
+    font-family: Roboto;
+    letter-spacing: 2.3px;
+    font-size: 18px;
 }
 
 .event-table-container {
