@@ -1,7 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { EventService } from './services/event.service';
-import { DaysOfTheWeek } from './models/model';
+import { DaysOfTheWeek } from './models/event';
 
 @Component({
     selector: 'app-root',

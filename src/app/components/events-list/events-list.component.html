@@ -1,8 +1,23 @@
-<div class="event-list-container" *ngIf="event">
-    <div class="day" *ngFor="let day of daysOfTheWeek">
-        <div>{{ day }}</div>
-        <div *ngFor="let event of event[day]">
-            <app-event [event]="event"></app-event>
+<div *ngIf="event">
+    <div class="event-list-container">
+        <div class="day" *ngFor="let day of daysOfTheWeek">
+            <div class="day-name">{{ day }}</div>
+            <div *ngFor="let event of event[day]">
+                <app-event
+                    [event]="event"
+                    (deleteEventEmitter)="deleteEventHandler($event)"
+                    (editEventEmitter)="updateEventHandler($event)"
+                >
+                </app-event>
+            </div>
+        </div>
+    </div>
+
+    <div class="add-edit-event-container" [formGroup]="eventForm">
+        <div>Add/Edit Event for <span class="add-edit-event-title">{{ selectedDay }}</span></div>
+        <input #eventInput placeholder="Enter an event" formControlName="name">
+        <div (click)="handleFormSubmit()">
+            <button class="submit-btn" mat-raised-button color="accent">Submit</button>
         </div>
     </div>
 </div>

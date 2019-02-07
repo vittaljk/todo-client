@@ -1,3 +1,5 @@
-<div *ngIf="event">
+<div *ngIf="event" class="event">
     {{ event.name }}
+    <div (click)="deleteEventHandler()">delete</div>
+    <div (click)="editEventHandler()">edit</div>
 </div>
