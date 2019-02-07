@@ -6,6 +6,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { EventsListComponent } from './components/events-list/events-list.component';
 import { EventComponent } from './components/event/event.component';
+import { AngularSvgIconModule } from 'angular-svg-icon';
 
 @NgModule({
     declarations: [
@@ -17,7 +18,9 @@ import { EventComponent } from './components/event/event.component';
         BrowserModule,
         BrowserAnimationsModule,
         HttpClientModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        HttpClientModule,
+        AngularSvgIconModule
     ],
     providers: [],
     bootstrap: [AppComponent]

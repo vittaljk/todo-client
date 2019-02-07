@@ -8,10 +8,33 @@
     justify-content: center;
     font-family: Roboto;
     font-size: 14px;
+    position: relative;
+    &:hover {
+        justify-content: center;
+        .actions-wrapper {
+            display: flex;
+        }
+    }
 }
 
 .event-name {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+}
+
+.actions-wrapper {
+    display: none;
+    width: 50px;
+    align-items: center;
+    justify-content: space-around;
+    position: absolute;
+    right: 5px;
+    background: #ffffff;
+    padding: 3px;
+    border-radius: 25px;
+}
+
+svg-icon {
+    height: 15px;;
 }

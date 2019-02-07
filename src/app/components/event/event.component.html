@@ -1,6 +1,7 @@
 <div *ngIf="event" class="event">
     <div class="event-name">{{ event.name }}</div>
-    <!-- TODO: edit delete -->
-    <!-- <div (click)="deleteEventHandler()">delete</div>
-    <div (click)="editEventHandler()">edit</div> -->
+    <div class="actions-wrapper">
+        <svg-icon (click)="deleteEventHandler()" src="/assets/svg/delete.svg" [svgStyle]="{ 'width.px': 15 }"></svg-icon>
+        <svg-icon (click)="editEventHandler()" src="/assets/svg/edit.svg" [svgStyle]="{ 'width.px': 15 }"></svg-icon>
+    </div>
 </div>
