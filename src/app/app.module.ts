@@ -4,10 +4,14 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
+import { EventsListComponent } from './components/events-list/events-list.component';
+import { EventComponent } from './components/event/event.component';
 
 @NgModule({
     declarations: [
-        AppComponent
+        AppComponent,
+        EventsListComponent,
+        EventComponent
     ],
     imports: [
         BrowserModule,

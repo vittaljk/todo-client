@@ -1,0 +1,8 @@
+<div class="event-list-container" *ngIf="event">
+    <div class="day" *ngFor="let day of daysOfTheWeek">
+        <div>{{ day }}</div>
+        <div *ngFor="let event of event[day]">
+            <app-event [event]="event"></app-event>
+        </div>
+    </div>
+</div>
