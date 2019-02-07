@@ -1,8 +1,7 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { EventService } from './event.service';
 import { DaysOfTheWeek } from './model';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition, MatSnackBar } from '@angular/material';
 
 @Component({
     selector: 'app-root',
@@ -29,8 +28,7 @@ export class AppComponent implements OnInit {
     showSpinner = false;
 
     constructor(
-        private eventService: EventService,
-        private snackBar: MatSnackBar
+        private eventService: EventService
     ) {
         this.eventForm = new FormGroup({
             name: new FormControl('', [Validators.required]),
@@ -190,16 +188,9 @@ export class AppComponent implements OnInit {
     /**
      * showToast
      * @param message
-     * @param horizontalPosition
-     * @param verticalPosition
-     * @param duration
-     * this method is used to show warning messages
+     * this method is used to show  messages
      */
-    showToast(
-        message: string,
-        horizontalPosition: MatSnackBarHorizontalPosition = 'center',
-        verticalPosition: MatSnackBarVerticalPosition = 'bottom',
-        duration = 5000) {
-        this.snackBar.open(message, null, { duration, horizontalPosition, verticalPosition });
+    showToast(message: string) {
+        console.log(message);
     }
 }
