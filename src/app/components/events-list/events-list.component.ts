@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { EventService } from 'src/app/services/event.service';
 import { DaysOfTheWeek, EventAction, IEvent } from 'src/app/models/event';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import * as _ from 'underscore';
 
 @Component({
     selector: 'app-events-list',
@@ -111,15 +112,17 @@ export class EventsListComponent implements OnInit {
             this.showSpinner = true;
             this.eventService.addEvent(event)
                 .subscribe(
-                    res => {
-                        this.initializeEvents();
+                    (resEvent: IEvent) => {
+                        if (resEvent) {
+                            this.event[this.selectedDay].push(resEvent);
+                        }
                         this.eventForm.reset();
                         this.showSpinner = false;
                     },
                     () => {  this.showSpinner = false; }
                 );
         } else {
-            console.log('Event name is required to add')
+            console.log('Event name is required to add');
         }
     }
 
@@ -138,7 +141,8 @@ export class EventsListComponent implements OnInit {
             this.eventService.updateEvent(event)
                 .subscribe(
                     res => {
-                        this.initializeEvents();
+                        const updateAt = _.findIndex(this.event[event.day], { _id: event.id });
+                        (this.event[event.day][updateAt] as IEvent).name = event.name;
                         this.eventForm.reset();
                         this.showSpinner = false;
                     },
@@ -157,12 +161,13 @@ export class EventsListComponent implements OnInit {
      * @param id
      * this methods calls deleteEvent calling event service deleteEvent method
      */
-    deleteEventHandler(id: string): void {
+    deleteEventHandler(event: IEvent): void {
         this.showSpinner = true;
-        this.eventService.deleteEvent(id)
+        this.eventService.deleteEvent(event._id)
             .subscribe(
                 res => {
-                    this.initializeEvents();
+                    const deleteAt = _.findIndex(this.event[event.day], event._id);
+                    this.event[event.day].splice(deleteAt, 1);
                     this.showSpinner = false;
                 },
                 () => { this.showSpinner = false; }

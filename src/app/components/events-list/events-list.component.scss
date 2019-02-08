@@ -17,6 +17,12 @@
     padding: 10px;
     border: solid 1px #d2d6d6;
     border-radius: 5px;
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.day.selected {
+    background: rgba(196, 199, 199, 0.8);
 }
 
 .day-name {
@@ -29,11 +35,6 @@
     font-family: Roboto-Condensed-Bold;
     font-size: 16px;
 }
-
-.day.selected {
-    background: rgba(240, 245, 245, 0.8);
-}
-
 
 .add-edit-event-container {
     width: 300px;

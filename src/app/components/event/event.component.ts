@@ -18,7 +18,7 @@ export class EventComponent implements OnInit {
 
     deleteEventHandler(event): void {
         event.stopPropagation();
-        this.deleteEventEmitter.emit(this.event._id);
+        this.deleteEventEmitter.emit(this.event);
     }
 
     editEventHandler(event): void {
